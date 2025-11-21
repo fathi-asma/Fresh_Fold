@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FreshFold Laundry - User Register</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/services.css">
+</head>
+<body>
+
+<h2 class="title">Our Laundry Services</h2>
+
+<div class="service-container">
+    <div class="service-card" th:each="service : ${services}">
+        <div class="service-content">
+            <div class="img-container">
+                <img th:src="@{/images/{img}(img=${service.image})}" alt="Service Image">
+            </div>
+            <div class="info">
+                <h3 th:text="${service.service_name}"></h3>
+                <p class="price">Rs. <span th:text="${service.price}"></span></p>
+                <p class="description" th:text="${service.service_type}"></p>
+                <form th:action="@{/order/select}" method="post">
+                    <input type="hidden" th:name="serviceId" th:value="${service.service_id}" />
+                    <button type="submit" class="select-btn">Select</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

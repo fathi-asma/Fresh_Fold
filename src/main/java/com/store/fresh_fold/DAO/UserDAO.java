@@ -52,5 +52,32 @@ public class  UserDAO {
         }
     }
 
+    // new method to get users by  userName
+    public User getUserByUserName(String userName) {
+        String sql = "SELECT * FROM users WHERE userName = ?";
+
+        try (Connection con = DBConnect.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)){
+            ps.setString(1, userName);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                User user = new User();
+                user.setId(rs.getInt("id"));
+                user.setFirstName(rs.getString("firstName"));
+                user.setLastName(rs.getString("lastName"));
+                user.setUserName(rs.getString("userName"));
+                user.setPassword(rs.getString("password"));
+                user.setEmail(rs.getString("email"));
+                user.setPhoneNumber(rs.getString("phoneNumber"));
+                return user;
+            }
+        } catch (Exception e) {
+           e.printStackTrace();
+        }
+        return null;
+    }
+
+
 
 }

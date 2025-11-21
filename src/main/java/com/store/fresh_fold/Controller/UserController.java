@@ -2,7 +2,9 @@ package com.store.fresh_fold.Controller;
 
 import com.store.fresh_fold.Model.User;
 import com.store.fresh_fold.Service.UserService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,9 +24,14 @@ public class UserController {
     }
 
     @PostMapping("/user/login")
-    public String UserLogin(@RequestParam String userName, @RequestParam String password) {
+    public String UserLogin(@RequestParam String userName,
+                            @RequestParam String password,
+                            HttpSession session) {
+
         if (userService.userLogin(userName, password)) {
-            return "UserDashboard";
+            User user = userService.getUserByUserName(userName);
+            session.setAttribute("loggedUser", user);
+            return "redirect:/user/dashboard";   // redirect to dashboard
         } else {
             return "UserLoginForm";
         }
@@ -50,6 +57,20 @@ public class UserController {
         } else {
             return "UserRegisterForm";
         }
+    }
+
+    @GetMapping("/user/dashboard")
+    public String userDashboard(HttpSession session, Model model) {
+        //get users from session during login
+        User loggedUser = (User) session.getAttribute("loggedUser");
+
+        if (loggedUser == null) {
+            return "UserLoginForm"; //user not lagged
+        }
+        //add user data to model
+        model.addAttribute("loggedUser", loggedUser);
+
+        return "UserDashboard";
     }
 
 }

@@ -1,10 +1,124 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>welcome to dashbard </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Laundry Hub - FreshFold</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/dashboard.css">
 </head>
 <body>
+<div class="dashboard-container">
 
+    <!-- Header -->
+    <header class="dashboard-header">
+        <div class="logo">
+            <i class="fas fa-tshirt"></i>
+            <h1>FreshFold</h1>
+        </div>
+
+        <div class="user-info">
+            <!-- Display logged user name -->
+            <span th:text="${loggedUser.userName}">User Name</span>
+            <a href="/user/logout" class="logout-btn">Logout</a>
+        </div>
+    </header>
+
+
+    <!-- Main Content -->
+    <main class="dashboard-main">
+
+        <!-- Welcome Section -->
+        <section class="welcome-section">
+            <h2 th:text="${welcomeMessage}">Welcome back!</h2>
+            <p>Manage your laundry orders and account settings here.</p>
+        </section>
+
+
+        <!-- Quick Stats -->
+        <section class="stats-section">
+
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-shopping-bag"></i>
+                </div>
+                <div class="stat-info">
+                    <h3 th:text="${orderCount}">0</h3>
+                    <p>Total Orders</p>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-calendar-check"></i>
+                </div>
+                <div class="stat-info">
+                    <h3 th:text="${lastOrderDate}">No orders yet</h3>
+                    <p>Last Order</p>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-star"></i>
+                </div>
+                <div class="stat-info">
+                    <h3>New</h3>
+                    <p>Member Status</p>
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- Quick Actions -->
+        <section class="actions-section">
+            <h3>Quick Actions</h3>
+            <div class="action-buttons">
+                <a href="/user/service" class="action-btn primary-btn">
+                    <i class="fas fa-plus-circle"></i>
+                    <span>New Order</span>
+                </a>
+
+                <a href="/user/orders" class="action-btn secondary-btn">
+                    <i class="fas fa-history"></i>
+                    <span>Order History</span>
+                </a>
+
+                <a href="/user/profile" class="action-btn secondary-btn">
+                    <i class="fas fa-user-edit"></i>
+                    <span>Edit Profile</span>
+                </a>
+            </div>
+        </section>
+
+
+        <!-- Recent Activity -->
+        <section class="activity-section">
+            <h3>Recent Activity</h3>
+            <div class="activity-list">
+                <div class="activity-item">
+                    <div class="activity-icon">
+                        <i class="fas fa-user-plus"></i>
+                    </div>
+                    <div class="activity-details">
+                        <p>Welcome to FreshFold! Your account has been created.</p>
+                        <span class="activity-time">Just now</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer class="dashboard-footer">
+        <p>&copy; 2025 FreshFold Laundry. All Rights Reserved.</p>
+        <p>Need help? <a href="#">Contact Support</a></p>
+    </footer>
+
+</div>
 </body>
 </html>

@@ -1,24 +1,95 @@
+/* register.css */
 
-body{
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'poppins', sans-serif;
+}
+body {
+    background: linear-gradient(135deg, #1a2a6c, #2c3e50, #4a6491);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    margin: 0;
+    min-height: 100vh;
+    color: #333;
 }
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
 .register-container {
     background-color: white;
     border-radius: 8px;
     box-shadow: 0 0 15px rgba(0,0,0,0.1);
     padding: 30px;
-    width: 350px;
+    width: 700px;
 }
+
+.login-container {
+    display: flex;
+    width: 900px;
+    height: 570px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+}
+
+.login-image {
+    flex: 1;
+    background: url('https://images.unsplash.com/photo-1581572168554-38b6ede09f4c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center;
+    background-size: cover;
+    position: relative;
+}
+
+.login-image::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #3498db, transparent);
+    opacity: 0.7;
+}
+
+.login-form {
+    flex: 1;
+    padding: 50px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.logo i {
+    font-size: 36px;
+    color: #3498db;
+    margin-right: 15px;
+}
+
+.logo h1 {
+    font-size: 28px;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
 .register-header {
     text-align: center;
     margin-bottom: 25px;
 }
+
 .register-header h2 {
     color: #2c3e50;
     margin-top: 0;
@@ -46,6 +117,15 @@ body{
 .form-group input:focus {
     border-color: #3498db;
     outline: none;
+}
+
+.form-row {
+    display: flex;
+    gap: 20px; /* space between first name and last name */
+}
+
+.form-row .form-group {
+    flex: 1; /* both sides equal width */
 }
 
 .register-btn {
@@ -79,4 +159,37 @@ body{
     border-color: #3498db;
     outline: none;
     box-shadow: 0 0 5px #3498db;
+}
+.footer {
+    margin-top: 30px;
+    text-align: center;
+    color: #7f8c8d;
+    font-size: 14px;
+}
+
+.footer a {
+    color: #3498db;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    .login-container {
+        flex-direction: column;
+        width: 100%;
+        max-width: 400px;
+        height: auto;
+    }
+
+    .login-image {
+        min-height: 200px;
+    }
+
+    .login-form {
+        padding: 30px 20px;
+    }
 }
