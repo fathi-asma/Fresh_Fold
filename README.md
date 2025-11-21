@@ -4,6 +4,7 @@ A full-stack Java Spring MVC application designed to manage user registrations, 
 ## Features (Work in Progress)
 #### ✔ User Registration 
 #### ✔ User Login 
+#### ✔ User Services 
 #### ⏳ Order Management
 #### ⏳ Admin Panel
 #### ⏳ Payment Handling
